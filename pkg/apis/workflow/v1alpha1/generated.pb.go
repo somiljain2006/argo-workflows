@@ -5522,6 +5522,11 @@ func (m *Parameter) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
+	i -= len(m.When)
+	copy(dAtA[i:], m.When)
+	i = encodeVarintGenerated(dAtA, i, uint64(len(m.When)))
+	i--
+	dAtA[i] = 0x42
 	if m.Description != nil {
 		i -= len(*m.Description)
 		copy(dAtA[i:], *m.Description)
@@ -11668,6 +11673,8 @@ func (m *Parameter) Size() (n int) {
 		l = len(*m.Description)
 		n += 1 + l + sovGenerated(uint64(l))
 	}
+	l = len(m.When)
+	n += 1 + l + sovGenerated(uint64(l))
 	return n
 }
 
@@ -14544,6 +14551,7 @@ func (this *Parameter) String() string {
 		`GlobalName:` + fmt.Sprintf("%v", this.GlobalName) + `,`,
 		`Enum:` + fmt.Sprintf("%v", this.Enum) + `,`,
 		`Description:` + valueToStringGenerated(this.Description) + `,`,
+		`When:` + fmt.Sprintf("%v", this.When) + `,`,
 		`}`,
 	}, "")
 	return s
@@ -31865,6 +31873,38 @@ func (m *Parameter) Unmarshal(dAtA []byte) error {
 			}
 			s := AnyString(dAtA[iNdEx:postIndex])
 			m.Description = &s
+			iNdEx = postIndex
+		case 8:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field When", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowGenerated
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthGenerated
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthGenerated
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.When = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex

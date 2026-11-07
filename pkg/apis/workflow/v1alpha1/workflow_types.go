@@ -1101,6 +1101,9 @@ type Parameter struct {
 
 	// Description is the parameter description
 	Description *AnyString `json:"description,omitempty" protobuf:"bytes,7,opt,name=description"`
+
+	// When is a conditional expression that determines parameter visibility in the submission UI
+	When string `json:"when,omitempty" protobuf:"bytes,8,opt,name=when"`
 }
 
 // ValueFrom describes a location in which to obtain the value to a parameter

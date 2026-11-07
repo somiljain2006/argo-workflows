@@ -13,16 +13,49 @@ import {ZeroState} from '../shared/components/zero-state';
 import {Context} from '../shared/context';
 import {historyUrl} from '../shared/history';
 import * as models from '../shared/models';
-import {CronWorkflow, Link, Workflow} from '../shared/models';
+import {ClusterWorkflowTemplate, CronWorkflow, Link, Parameter, Workflow, WorkflowTemplate} from '../shared/models';
 import {services} from '../shared/services';
 import {useCollectEvent} from '../shared/use-collect-event';
 import {useEditableObject} from '../shared/use-editable-object';
 import {useQueryParams} from '../shared/use-query-params';
 import {WidgetGallery} from '../widgets/widget-gallery';
+import {SubmitWorkflowPanel} from '../workflows/components/submit-workflow-panel';
 import {WorkflowDetailsList} from '../workflows/components/workflow-details-list/workflow-details-list';
 import {CronWorkflowEditor} from './cron-workflow-editor';
 
 import '../workflows/components/workflow-details/workflow-details.scss';
+
+export function mergeCronParameters(templateParams: Parameter[] = [], cronParams: Parameter[] = []): Parameter[] {
+    const cronMap = new Map((cronParams || []).map(p => [p.name, p]));
+    const seen = new Set<string>();
+    const result: Parameter[] = [];
+
+    for (const tp of templateParams || []) {
+        seen.add(tp.name);
+        const cp = cronMap.get(tp.name);
+        if (cp) {
+            result.push({
+                ...tp,
+                ...cp,
+                enum: cp.enum !== undefined ? cp.enum : tp.enum,
+                description: cp.description !== undefined ? cp.description : tp.description,
+                when: cp.when !== undefined ? cp.when : tp.when,
+                default: cp.default !== undefined ? cp.default : tp.default,
+                value: cp.value !== undefined ? cp.value : tp.value
+            });
+        } else {
+            result.push(tp);
+        }
+    }
+
+    for (const cp of cronParams || []) {
+        if (!seen.has(cp.name)) {
+            result.push(cp);
+        }
+    }
+
+    return result;
+}
 
 export function CronWorkflowDetails({match, location, history}: RouteComponentProps<any>) {
     // boiler-plate
@@ -37,8 +70,22 @@ export function CronWorkflowDetails({match, location, history}: RouteComponentPr
     const [workflows, setWorkflows] = useState<Workflow[]>([]);
     const [columns, setColumns] = useState<models.Column[]>([]);
 
+    const [referencedTemplate, setReferencedTemplate] = useState<WorkflowTemplate | ClusterWorkflowTemplate | null>(null);
     const {object: cronWorkflow, setObject: setCronWorkflow, resetObject: resetCronWorkflow, serialization, edited, lang, setLang} = useEditableObject<CronWorkflow>();
     const [error, setError] = useState<Error>();
+
+    useEffect(() => {
+        const tmplRef = cronWorkflow?.spec?.workflowSpec?.workflowTemplateRef;
+        if (!tmplRef) {
+            setReferencedTemplate(null);
+            return;
+        }
+        if (tmplRef.clusterScope) {
+            services.clusterWorkflowTemplate.get(tmplRef.name).then(setReferencedTemplate).catch(setError);
+        } else {
+            services.workflowTemplate.get(tmplRef.name, namespace).then(setReferencedTemplate).catch(setError);
+        }
+    }, [cronWorkflow, namespace]);
 
     useEffect(
         useQueryParams(history, p => {
@@ -114,12 +161,7 @@ export function CronWorkflowDetails({match, location, history}: RouteComponentPr
                 title: 'Submit',
                 iconClassName: 'fa fa-plus',
                 disabled: edited,
-                action: () =>
-                    services.workflows
-                        .submit('cronwf', name, namespace)
-                        .then(wf => navigation.goto(uiUrl(`workflows/${wf.metadata.namespace}/${wf.metadata.name}`)))
-                        .then(() => setError(null))
-                        .catch(setError)
+                action: () => setSidePanel('submit')
             },
             {
                 title: 'Update',
@@ -192,6 +234,9 @@ export function CronWorkflowDetails({match, location, history}: RouteComponentPr
         return items;
     };
 
+    const hasTemplateRef = !!cronWorkflow?.spec?.workflowSpec?.workflowTemplateRef;
+    const isTemplateLoading = hasTemplateRef && !referencedTemplate;
+
     return (
         <Page
             title='Cron Workflow Details'
@@ -221,7 +266,27 @@ export function CronWorkflowDetails({match, location, history}: RouteComponentPr
                         onTabSelected={setTab}
                     />
                 )}
-                <SlidingPanel isShown={!!sidePanel} onClose={() => setSidePanel(null)}>
+                <SlidingPanel isShown={!!sidePanel} onClose={() => setSidePanel(null)} isMiddle={sidePanel === 'submit'}>
+                    {sidePanel === 'submit' &&
+                        cronWorkflow &&
+                        (isTemplateLoading ? (
+                            <Loading />
+                        ) : (
+                            <SubmitWorkflowPanel
+                                kind='CronWorkflow'
+                                namespace={namespace}
+                                name={name}
+                                entrypoint={cronWorkflow.spec?.workflowSpec?.entrypoint || referencedTemplate?.spec?.entrypoint || ''}
+                                templates={
+                                    cronWorkflow.spec?.workflowSpec?.templates && cronWorkflow.spec.workflowSpec.templates.length > 0
+                                        ? cronWorkflow.spec.workflowSpec.templates
+                                        : referencedTemplate?.spec?.templates || []
+                                }
+                                workflowParameters={mergeCronParameters(referencedTemplate?.spec?.arguments?.parameters, cronWorkflow.spec?.workflowSpec?.arguments?.parameters)}
+                                workflowArtifacts={cronWorkflow.spec?.workflowSpec?.arguments?.artifacts || referencedTemplate?.spec?.arguments?.artifacts || []}
+                                history={history}
+                            />
+                        ))}
                     {sidePanel === 'share' && <WidgetGallery namespace={namespace} label={'workflows.argoproj.io/cron-workflow=' + name} />}
                 </SlidingPanel>
                 <>

@@ -1234,6 +1234,10 @@ spec:
                             through the CLI, API, etc.
                           type: object
                       type: object
+                    when:
+                      description: When is a conditional expression that determines
+                        parameter visibility in the submission UI
+                      type: string
                   required:
                   - name
                   type: object

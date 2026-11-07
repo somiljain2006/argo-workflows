@@ -14,7 +14,7 @@ import {Artifact, Parameter, Template} from '../../shared/models';
 import {services} from '../../shared/services';
 
 interface Props {
-    kind: 'ClusterWorkflowTemplate' | 'WorkflowTemplate';
+    kind: 'ClusterWorkflowTemplate' | 'WorkflowTemplate' | 'CronWorkflow';
     namespace: string;
     onNamespaceChange?: (namespace: string) => void;
     name: string;
@@ -35,9 +35,16 @@ const defaultTemplate: Template = {
 
 export function SubmitWorkflowPanel(props: Props) {
     const {navigation} = useContext(Context);
-    const [entrypoint, setEntrypoint] = useState(props.entrypoint || workflowEntrypoint);
-    const [parameters, setParameters] = useState<Parameter[]>([]);
-    const [workflowParameters, setWorkflowParameters] = useState<Parameter[]>(JSON.parse(JSON.stringify(props.workflowParameters)));
+    const initialEntrypoint = props.entrypoint || workflowEntrypoint;
+    const [entrypoint, setEntrypoint] = useState(initialEntrypoint);
+    const [parameters, setParameters] = useState<Parameter[]>(() => {
+        const matchingTemplate = props.templates?.find(t => t.name === initialEntrypoint);
+        if (matchingTemplate?.inputs?.parameters) {
+            return JSON.parse(JSON.stringify(matchingTemplate.inputs.parameters));
+        }
+        return [];
+    });
+    const [workflowParameters, setWorkflowParameters] = useState<Parameter[]>(() => (props.workflowParameters ? JSON.parse(JSON.stringify(props.workflowParameters)) : []));
     const [labels, setLabels] = useState(['submit-from-ui=true']);
     const [error, setError] = useState<Error>();
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -89,6 +96,14 @@ export function SubmitWorkflowPanel(props: Props) {
         }));
     }, [templates]);
 
+    const conditionContext = useMemo(
+        () => ({
+            workflowParameters,
+            parameters
+        }),
+        [workflowParameters, parameters]
+    );
+
     async function submit() {
         setIsSubmitting(true);
         try {
@@ -98,7 +113,7 @@ export function SubmitWorkflowPanel(props: Props) {
                 return `${name}=${response.key}`;
             });
 
-            const submitted = await services.workflows.submit(props.kind, props.name, props.namespace, {
+            const submitted = await services.workflows.submit(props.kind === 'CronWorkflow' ? 'cronwf' : props.kind, props.name, props.namespace, {
                 entryPoint: entrypoint === workflowEntrypoint ? null : entrypoint,
                 parameters: [
                     ...workflowParameters.filter(p => getValueFromParameter(p) !== undefined).map(p => p.name + '=' + getValueFromParameter(p)),
@@ -136,14 +151,14 @@ export function SubmitWorkflowPanel(props: Props) {
                         onChange={selected => {
                             const selectedTemp = templates.find(t => t.name === selected.value);
                             setEntrypoint(selected.value);
-                            setParameters(selectedTemp?.inputs?.parameters || []);
+                            setParameters(selectedTemp?.inputs?.parameters ? JSON.parse(JSON.stringify(selectedTemp.inputs.parameters)) : []);
                         }}
                     />
                 </div>
                 <div key='parameters' style={{marginBottom: 25}}>
                     <label>Parameters</label>
-                    {workflowParameters.length > 0 && <ParametersInput parameters={workflowParameters} onChange={setWorkflowParameters} />}
-                    {parameters.length > 0 && <ParametersInput parameters={parameters} onChange={setParameters} />}
+                    {workflowParameters.length > 0 && <ParametersInput parameters={workflowParameters} onChange={setWorkflowParameters} context={conditionContext} />}
+                    {parameters.length > 0 && <ParametersInput parameters={parameters} onChange={setParameters} context={conditionContext} />}
                     {workflowParameters.length === 0 && parameters.length === 0 ? (
                         <>
                             <br />

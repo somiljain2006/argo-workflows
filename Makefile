@@ -261,9 +261,9 @@ else
 	CONTROLLER_PKG_FILES  := $(shell echo cmd/workflow-controller && go list -f '{{ join .Deps "\n" }}' ./cmd/workflow-controller/ | grep 'argoproj/argo-workflows/v4/' | cut -c 39-)
 endif
 else
-	ARGOEXEC_PKG_FILES    :=
-	CLI_PKG_FILES         :=
-	CONTROLLER_PKG_FILES  :=
+ARGOEXEC_PKG_FILES    :=
+CLI_PKG_FILES         :=
+CONTROLLER_PKG_FILES  :=
 endif
 
 TYPES := $(shell find pkg/apis/workflow/v1alpha1 -type f -name '*.go' -not -name openapi_generated.go -not -name '*generated*' -not -name '*test.go')

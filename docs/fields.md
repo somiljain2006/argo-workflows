@@ -3013,6 +3013,7 @@ Parameter indicate a passed string parameter to a service template with an optio
 |`name`|`string`|Name is the parameter name|
 |`value`|`string`|Value is the literal value to use for the parameter. If specified in the context of an input parameter, any passed values take precedence over the specified value|
 |`valueFrom`|[`ValueFrom`](#valuefrom)|ValueFrom is the source for the output parameter's value|
+|`when`|`string`|When is a conditional expression that determines parameter visibility in the submission UI|
 
 ## ExecutorPluginSpec
 

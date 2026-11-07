@@ -6503,6 +6503,10 @@
         "valueFrom": {
           "$ref": "#/definitions/io.argoproj.workflow.v1alpha1.ValueFrom",
           "description": "ValueFrom is the source for the output parameter's value"
+        },
+        "when": {
+          "description": "When is a conditional expression that determines parameter visibility in the submission UI",
+          "type": "string"
         }
       },
       "required": [

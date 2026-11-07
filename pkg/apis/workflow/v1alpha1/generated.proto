@@ -1359,6 +1359,9 @@ message Parameter {
 
   // Description is the parameter description
   optional string description = 7;
+
+  // When is a conditional expression that determines parameter visibility in the submission UI
+  optional string when = 8;
 }
 
 // Plugin is an Object with exactly one key

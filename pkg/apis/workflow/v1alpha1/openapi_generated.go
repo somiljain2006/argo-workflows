@@ -5048,6 +5048,13 @@ func schema_pkg_apis_workflow_v1alpha1_Parameter(ref common.ReferenceCallback) c
 							Format:      "",
 						},
 					},
+					"when": {
+						SchemaProps: spec.SchemaProps{
+							Description: "When is a conditional expression that determines parameter visibility in the submission UI",
+							Type:        []string{"string"},
+							Format:      "",
+						},
+					},
 				},
 				Required: []string{"name"},
 			},

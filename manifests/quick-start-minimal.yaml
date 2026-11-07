@@ -2167,6 +2167,10 @@ spec:
                                 either through the CLI, API, etc.
                               type: object
                           type: object
+                        when:
+                          description: When is a conditional expression that determines
+                            parameter visibility in the submission UI
+                          type: string
                       required:
                       - name
                       type: object
@@ -5128,6 +5132,11 @@ spec:
                                       either through the CLI, API, etc.
                                     type: object
                                 type: object
+                              when:
+                                description: When is a conditional expression that
+                                  determines parameter visibility in the submission
+                                  UI
+                                type: string
                             required:
                             - name
                             type: object
@@ -9168,6 +9177,8 @@ spec:
                                           supplied:
                                             type: object
                                         type: object
+                                      when:
+                                        type: string
                                     required:
                                     - name
                                     type: object
@@ -9846,6 +9857,8 @@ spec:
                                                 supplied:
                                                   type: object
                                               type: object
+                                            when:
+                                              type: string
                                           required:
                                           - name
                                           type: object
@@ -11999,6 +12012,8 @@ spec:
                                 supplied:
                                   type: object
                               type: object
+                            when:
+                              type: string
                           required:
                           - name
                           type: object
@@ -12781,6 +12796,8 @@ spec:
                                 supplied:
                                   type: object
                               type: object
+                            when:
+                              type: string
                           required:
                           - name
                           type: object
@@ -15710,6 +15727,8 @@ spec:
                                         supplied:
                                           type: object
                                       type: object
+                                    when:
+                                      type: string
                                   required:
                                   - name
                                   type: object
@@ -16381,6 +16400,8 @@ spec:
                                               supplied:
                                                 type: object
                                             type: object
+                                          when:
+                                            type: string
                                         required:
                                         - name
                                         type: object
@@ -23778,6 +23799,11 @@ spec:
                                                 API, etc.
                                               type: object
                                           type: object
+                                        when:
+                                          description: When is a conditional expression
+                                            that determines parameter visibility in
+                                            the submission UI
+                                          type: string
                                       required:
                                       - name
                                       type: object
@@ -25200,6 +25226,11 @@ spec:
                                                       through the CLI, API, etc.
                                                     type: object
                                                 type: object
+                                              when:
+                                                description: When is a conditional
+                                                  expression that determines parameter
+                                                  visibility in the submission UI
+                                                type: string
                                             required:
                                             - name
                                             type: object
@@ -29373,6 +29404,11 @@ spec:
                                       either through the CLI, API, etc.
                                     type: object
                                 type: object
+                              when:
+                                description: When is a conditional expression that
+                                  determines parameter visibility in the submission
+                                  UI
+                                type: string
                             required:
                             - name
                             type: object
@@ -30780,6 +30816,11 @@ spec:
                                       either through the CLI, API, etc.
                                     type: object
                                 type: object
+                              when:
+                                description: When is a conditional expression that
+                                  determines parameter visibility in the submission
+                                  UI
+                                type: string
                             required:
                             - name
                             type: object
@@ -36817,6 +36858,11 @@ spec:
                                               API, etc.
                                             type: object
                                         type: object
+                                      when:
+                                        description: When is a conditional expression
+                                          that determines parameter visibility in
+                                          the submission UI
+                                        type: string
                                     required:
                                     - name
                                     type: object
@@ -38205,6 +38251,11 @@ spec:
                                                     the CLI, API, etc.
                                                   type: object
                                               type: object
+                                            when:
+                                              description: When is a conditional expression
+                                                that determines parameter visibility
+                                                in the submission UI
+                                              type: string
                                           required:
                                           - name
                                           type: object
@@ -45149,6 +45200,10 @@ spec:
                                     either through the CLI, API, etc.
                                   type: object
                               type: object
+                            when:
+                              description: When is a conditional expression that determines
+                                parameter visibility in the submission UI
+                              type: string
                           required:
                           - name
                           type: object
@@ -48170,6 +48225,11 @@ spec:
                                           directly, either through the CLI, API, etc.
                                         type: object
                                     type: object
+                                  when:
+                                    description: When is a conditional expression
+                                      that determines parameter visibility in the
+                                      submission UI
+                                    type: string
                                 required:
                                 - name
                                 type: object
@@ -52214,6 +52274,8 @@ spec:
                                               supplied:
                                                 type: object
                                             type: object
+                                          when:
+                                            type: string
                                         required:
                                         - name
                                         type: object
@@ -52892,6 +52954,8 @@ spec:
                                                     supplied:
                                                       type: object
                                                   type: object
+                                                when:
+                                                  type: string
                                               required:
                                               - name
                                               type: object
@@ -55045,6 +55109,8 @@ spec:
                                     supplied:
                                       type: object
                                   type: object
+                                when:
+                                  type: string
                               required:
                               - name
                               type: object
@@ -55828,6 +55894,8 @@ spec:
                                     supplied:
                                       type: object
                                   type: object
+                                when:
+                                  type: string
                               required:
                               - name
                               type: object
@@ -58758,6 +58826,8 @@ spec:
                                             supplied:
                                               type: object
                                           type: object
+                                        when:
+                                          type: string
                                       required:
                                       - name
                                       type: object
@@ -59430,6 +59500,8 @@ spec:
                                                   supplied:
                                                     type: object
                                                 type: object
+                                              when:
+                                                type: string
                                             required:
                                             - name
                                             type: object
@@ -66930,6 +67002,11 @@ spec:
                                                     the CLI, API, etc.
                                                   type: object
                                               type: object
+                                            when:
+                                              description: When is a conditional expression
+                                                that determines parameter visibility
+                                                in the submission UI
+                                              type: string
                                           required:
                                           - name
                                           type: object
@@ -68420,6 +68497,12 @@ spec:
                                                           API, etc.
                                                         type: object
                                                     type: object
+                                                  when:
+                                                    description: When is a conditional
+                                                      expression that determines parameter
+                                                      visibility in the submission
+                                                      UI
+                                                    type: string
                                                 required:
                                                 - name
                                                 type: object
@@ -72689,6 +72772,11 @@ spec:
                                           directly, either through the CLI, API, etc.
                                         type: object
                                     type: object
+                                  when:
+                                    description: When is a conditional expression
+                                      that determines parameter visibility in the
+                                      submission UI
+                                    type: string
                                 required:
                                 - name
                                 type: object
@@ -74139,6 +74227,11 @@ spec:
                                           directly, either through the CLI, API, etc.
                                         type: object
                                     type: object
+                                  when:
+                                    description: When is a conditional expression
+                                      that determines parameter visibility in the
+                                      submission UI
+                                    type: string
                                 required:
                                 - name
                                 type: object
@@ -80271,6 +80364,11 @@ spec:
                                                   the CLI, API, etc.
                                                 type: object
                                             type: object
+                                          when:
+                                            description: When is a conditional expression
+                                              that determines parameter visibility
+                                              in the submission UI
+                                            type: string
                                         required:
                                         - name
                                         type: object
@@ -81705,6 +81803,11 @@ spec:
                                                         etc.
                                                       type: object
                                                   type: object
+                                                when:
+                                                  description: When is a conditional
+                                                    expression that determines parameter
+                                                    visibility in the submission UI
+                                                  type: string
                                               required:
                                               - name
                                               type: object
@@ -88946,6 +89049,10 @@ spec:
                                     either through the CLI, API, etc.
                                   type: object
                               type: object
+                            when:
+                              description: When is a conditional expression that determines
+                                parameter visibility in the submission UI
+                              type: string
                           required:
                           - name
                           type: object
@@ -91179,6 +91286,10 @@ spec:
                                 either through the CLI, API, etc.
                               type: object
                           type: object
+                        when:
+                          description: When is a conditional expression that determines
+                            parameter visibility in the submission UI
+                          type: string
                       required:
                       - name
                       type: object
@@ -94140,6 +94251,11 @@ spec:
                                       either through the CLI, API, etc.
                                     type: object
                                 type: object
+                              when:
+                                description: When is a conditional expression that
+                                  determines parameter visibility in the submission
+                                  UI
+                                type: string
                             required:
                             - name
                             type: object
@@ -98180,6 +98296,8 @@ spec:
                                           supplied:
                                             type: object
                                         type: object
+                                      when:
+                                        type: string
                                     required:
                                     - name
                                     type: object
@@ -98858,6 +98976,8 @@ spec:
                                                 supplied:
                                                   type: object
                                               type: object
+                                            when:
+                                              type: string
                                           required:
                                           - name
                                           type: object
@@ -101011,6 +101131,8 @@ spec:
                                 supplied:
                                   type: object
                               type: object
+                            when:
+                              type: string
                           required:
                           - name
                           type: object
@@ -101793,6 +101915,8 @@ spec:
                                 supplied:
                                   type: object
                               type: object
+                            when:
+                              type: string
                           required:
                           - name
                           type: object
@@ -104722,6 +104846,8 @@ spec:
                                         supplied:
                                           type: object
                                       type: object
+                                    when:
+                                      type: string
                                   required:
                                   - name
                                   type: object
@@ -105393,6 +105519,8 @@ spec:
                                               supplied:
                                                 type: object
                                             type: object
+                                          when:
+                                            type: string
                                         required:
                                         - name
                                         type: object
@@ -112790,6 +112918,11 @@ spec:
                                                 API, etc.
                                               type: object
                                           type: object
+                                        when:
+                                          description: When is a conditional expression
+                                            that determines parameter visibility in
+                                            the submission UI
+                                          type: string
                                       required:
                                       - name
                                       type: object
@@ -114212,6 +114345,11 @@ spec:
                                                       through the CLI, API, etc.
                                                     type: object
                                                 type: object
+                                              when:
+                                                description: When is a conditional
+                                                  expression that determines parameter
+                                                  visibility in the submission UI
+                                                type: string
                                             required:
                                             - name
                                             type: object
@@ -118385,6 +118523,11 @@ spec:
                                       either through the CLI, API, etc.
                                     type: object
                                 type: object
+                              when:
+                                description: When is a conditional expression that
+                                  determines parameter visibility in the submission
+                                  UI
+                                type: string
                             required:
                             - name
                             type: object
@@ -119792,6 +119935,11 @@ spec:
                                       either through the CLI, API, etc.
                                     type: object
                                 type: object
+                              when:
+                                description: When is a conditional expression that
+                                  determines parameter visibility in the submission
+                                  UI
+                                type: string
                             required:
                             - name
                             type: object
@@ -125829,6 +125977,11 @@ spec:
                                               API, etc.
                                             type: object
                                         type: object
+                                      when:
+                                        description: When is a conditional expression
+                                          that determines parameter visibility in
+                                          the submission UI
+                                        type: string
                                     required:
                                     - name
                                     type: object
@@ -127217,6 +127370,11 @@ spec:
                                                     the CLI, API, etc.
                                                   type: object
                                               type: object
+                                            when:
+                                              description: When is a conditional expression
+                                                that determines parameter visibility
+                                                in the submission UI
+                                              type: string
                                           required:
                                           - name
                                           type: object
@@ -132905,6 +133063,8 @@ spec:
                                   supplied:
                                     type: object
                                 type: object
+                              when:
+                                type: string
                             required:
                             - name
                             type: object
@@ -133587,6 +133747,8 @@ spec:
                                   supplied:
                                     type: object
                                 type: object
+                              when:
+                                type: string
                             required:
                             - name
                             type: object
@@ -134288,6 +134450,8 @@ spec:
                             supplied:
                               type: object
                           type: object
+                        when:
+                          type: string
                       required:
                       - name
                       type: object
@@ -136439,6 +136603,10 @@ spec:
                             through the CLI, API, etc.
                           type: object
                       type: object
+                    when:
+                      description: When is a conditional expression that determines
+                        parameter visibility in the submission UI
+                      type: string
                   required:
                   - name
                   type: object
@@ -139626,6 +139794,8 @@ spec:
                                             supplied:
                                               type: object
                                           type: object
+                                        when:
+                                          type: string
                                       required:
                                       - name
                                       type: object
@@ -140293,6 +140463,8 @@ spec:
                                                   supplied:
                                                     type: object
                                                 type: object
+                                              when:
+                                                type: string
                                             required:
                                             - name
                                             type: object
@@ -142418,6 +142590,8 @@ spec:
                                   supplied:
                                     type: object
                                 type: object
+                              when:
+                                type: string
                             required:
                             - name
                             type: object
@@ -143188,6 +143362,8 @@ spec:
                                   supplied:
                                     type: object
                                 type: object
+                              when:
+                                type: string
                             required:
                             - name
                             type: object
@@ -146100,6 +146276,8 @@ spec:
                                               supplied:
                                                 type: object
                                             type: object
+                                          when:
+                                            type: string
                                         required:
                                         - name
                                         type: object
@@ -146761,6 +146939,8 @@ spec:
                                                     supplied:
                                                       type: object
                                                   type: object
+                                                when:
+                                                  type: string
                                               required:
                                               - name
                                               type: object
@@ -148954,6 +149134,11 @@ spec:
                                       either through the CLI, API, etc.
                                     type: object
                                 type: object
+                              when:
+                                description: When is a conditional expression that
+                                  determines parameter visibility in the submission
+                                  UI
+                                type: string
                             required:
                             - name
                             type: object
@@ -151150,6 +151335,10 @@ spec:
                                 either through the CLI, API, etc.
                               type: object
                           type: object
+                        when:
+                          description: When is a conditional expression that determines
+                            parameter visibility in the submission UI
+                          type: string
                       required:
                       - name
                       type: object
@@ -154111,6 +154300,11 @@ spec:
                                       either through the CLI, API, etc.
                                     type: object
                                 type: object
+                              when:
+                                description: When is a conditional expression that
+                                  determines parameter visibility in the submission
+                                  UI
+                                type: string
                             required:
                             - name
                             type: object
@@ -158151,6 +158345,8 @@ spec:
                                           supplied:
                                             type: object
                                         type: object
+                                      when:
+                                        type: string
                                     required:
                                     - name
                                     type: object
@@ -158829,6 +159025,8 @@ spec:
                                                 supplied:
                                                   type: object
                                               type: object
+                                            when:
+                                              type: string
                                           required:
                                           - name
                                           type: object
@@ -160982,6 +161180,8 @@ spec:
                                 supplied:
                                   type: object
                               type: object
+                            when:
+                              type: string
                           required:
                           - name
                           type: object
@@ -161764,6 +161964,8 @@ spec:
                                 supplied:
                                   type: object
                               type: object
+                            when:
+                              type: string
                           required:
                           - name
                           type: object
@@ -164693,6 +164895,8 @@ spec:
                                         supplied:
                                           type: object
                                       type: object
+                                    when:
+                                      type: string
                                   required:
                                   - name
                                   type: object
@@ -165364,6 +165568,8 @@ spec:
                                               supplied:
                                                 type: object
                                             type: object
+                                          when:
+                                            type: string
                                         required:
                                         - name
                                         type: object
@@ -172761,6 +172967,11 @@ spec:
                                                 API, etc.
                                               type: object
                                           type: object
+                                        when:
+                                          description: When is a conditional expression
+                                            that determines parameter visibility in
+                                            the submission UI
+                                          type: string
                                       required:
                                       - name
                                       type: object
@@ -174183,6 +174394,11 @@ spec:
                                                       through the CLI, API, etc.
                                                     type: object
                                                 type: object
+                                              when:
+                                                description: When is a conditional
+                                                  expression that determines parameter
+                                                  visibility in the submission UI
+                                                type: string
                                             required:
                                             - name
                                             type: object
@@ -178356,6 +178572,11 @@ spec:
                                       either through the CLI, API, etc.
                                     type: object
                                 type: object
+                              when:
+                                description: When is a conditional expression that
+                                  determines parameter visibility in the submission
+                                  UI
+                                type: string
                             required:
                             - name
                             type: object
@@ -179763,6 +179984,11 @@ spec:
                                       either through the CLI, API, etc.
                                     type: object
                                 type: object
+                              when:
+                                description: When is a conditional expression that
+                                  determines parameter visibility in the submission
+                                  UI
+                                type: string
                             required:
                             - name
                             type: object
@@ -185800,6 +186026,11 @@ spec:
                                               API, etc.
                                             type: object
                                         type: object
+                                      when:
+                                        description: When is a conditional expression
+                                          that determines parameter visibility in
+                                          the submission UI
+                                        type: string
                                     required:
                                     - name
                                     type: object
@@ -187188,6 +187419,11 @@ spec:
                                                     the CLI, API, etc.
                                                   type: object
                                               type: object
+                                            when:
+                                              description: When is a conditional expression
+                                                that determines parameter visibility
+                                                in the submission UI
+                                              type: string
                                           required:
                                           - name
                                           type: object

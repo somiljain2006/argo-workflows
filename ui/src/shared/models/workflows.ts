@@ -211,6 +211,10 @@ export interface Parameter {
      * Description is the parameter description
      */
     description?: string;
+    /**
+     * When is a conditional expression that determines parameter visibility in the submission UI
+     */
+    when?: string;
 }
 
 /**
